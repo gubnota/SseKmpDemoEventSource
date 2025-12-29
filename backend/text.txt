@@ -1,0 +1,4 @@
+This backend emulates Server-Sent Events.
+It streams one word roughly every 50 milliseconds.
+Android Compose and iOS SwiftUI receive the stream and display it live.
+The same prepared text is also available via plain HTTP at /text.
