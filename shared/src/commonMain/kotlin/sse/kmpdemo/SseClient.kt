@@ -26,7 +26,9 @@ class SseClient {
                         listener.onLine("[$name] $data")
                     }
                 }
-            } catch (t: Throwable) {
+            }
+            catch (t: Throwable) {
+                if (t is CancellationException) return@launch
                 listener.onError(t.toString())
             }
         }

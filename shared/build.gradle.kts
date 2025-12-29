@@ -36,6 +36,7 @@ kotlin {
         androidMain.dependencies {
             // Android engine
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.slf4j.simple)
         }
 
         iosMain.dependencies {
@@ -46,8 +47,24 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        jvmMain.dependencies {
+            implementation(libs.slf4j.simple)
+            implementation(libs.ktor.client.okhttp)
+
+        }
+        jvmTest.dependencies {
+            implementation(kotlin("test"))
+            implementation("io.ktor:ktor-server-core:${libs.versions.ktor.get()}")
+            implementation("io.ktor:ktor-server-netty:${libs.versions.ktor.get()}")
+        }
+    }
+    jvm("jvm") {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
     }
 }
+
 
 android {
     namespace = "sse.kmpdemo.shared"
